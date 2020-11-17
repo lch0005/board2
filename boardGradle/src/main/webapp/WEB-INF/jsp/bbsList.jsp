@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>    
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,16 +20,16 @@
 
 
 </head>
-<body style="padding:10px;">
+<body style="padding: 10px;">
 
-  <div class="input-group" style="margin:10px;">
-    <input type="text" class="form-control" placeholder="Search">
-    <div class="input-group-btn">
-      <button class="btn btn-default" type="button">
-        <i class="glyphicon glyphicon-search"></i>
-      </button>
-    </div>
-  </div>
+	<div class="input-group" style="margin: 10px;">
+		<input type="text" class="form-control" placeholder="Search">
+		<div class="input-group-btn">
+			<button class="btn btn-default" type="button">
+				<i class="glyphicon glyphicon-search"></i>
+			</button>
+		</div>
+	</div>
 
 
 
@@ -55,8 +55,37 @@
 		</tbody>
 
 	</table>
+	<div style="width: 100%; text-align: center">
+		<ul class="pagination">
+			<li><a href="#">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#">5</a></li>
+		</ul>
+	</div>
+	<button type="button" class="btn btn-primary btn-block" onclick="moveWrite();">글쓰기</button>
+
+
+
+
+<a href="#">News <span class="badge">5</span></a><br>
+<a href="#">Comments <span class="badge">10</span></a><br>
+<a href="#">Updates <span class="badge">2</span></a>
 
 
 
 </body>
+<script>
+	var moveWrite = function(){
+		location.href= "/add";
+		}
+	/* 제이쿼리는 알아두세요 (제이쿼리방식)
+	$(document).ready(function(){
+		$("#btnWrite").click(funtion(){
+			location.href = "/add";
+			});
+			});
+	*/
+</script>
 </html>

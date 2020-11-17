@@ -24,4 +24,14 @@
 	
 	</insert>
 
+	<select id="getSearchList" resultType="com.bbs.board.dto.BbsDto" parameterType="com.bbs.board.dto.BbsDto">
+		SELECT
+		 seq, title, USER, detl
+		FROM 
+		 tb_bbs
+		 WHERE
+		  title LIKE CONCAT('%', #{title, jdbcType=VARCHAR}, '%')
+	</select>
+
+
 </mapper>
