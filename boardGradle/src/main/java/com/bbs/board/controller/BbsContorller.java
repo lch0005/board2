@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bbs.board.dto.BbsDto;
@@ -23,7 +26,7 @@ public class BbsContorller {
 		return new ModelAndView("bbsList", "list", list);
 	}
 	
-	@GetMapping("/add") // add ÁÖ¼Ò¸¦ get¹æ½ÄÀ¸·Î ¿­¶§ »ç¿ëÇÕ´Ï´Ù.
+	@GetMapping("/add") // add ï¿½Ö¼Ò¸ï¿½ getï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
 	public String add() {
 		return "add";
 	}
@@ -35,4 +38,30 @@ public class BbsContorller {
 		List<BbsDto> list = bbsService.getList();
 		return new ModelAndView("bbsList", "list", list);
 	}
+	@PostMapping("rest/searchList")
+	@ResponseBody
+	List<BbsDto> getSearchList(@RequestBody BbsDto bbsDto){
+		List<BbsDto> list = bbsService.getSearchList(bbsDto);
+		return list;
+	}
+	
+	
+	
+	@GetMapping("/detail/{seq}")
+	public ModelAndView detail(@PathVariable("seq")String seq) {
+		return new ModelAndView("detail","seq",seq);
+	}
+	
+
+	
+	@GetMapping("/rest/detail/{seq}")
+	@ResponseBody
+	BbsDto getDetail(@PathVariable("seq")int seq) {  //@PathVariableì–´ë…¸í…Œì´ì…˜ì´ {seq}ë¡œ ë¶ˆëŸ¬ì˜¬ ìˆ˜ ìˆê²Œ í•´ì¤Œ
+	BbsDto inDto=new BbsDto();
+	inDto.setSeq(seq);
+	
+	BbsDto dto = bbsService.getDetail(inDto);
+	return dto;                                    //JSTLë°©ì‹?
+	}
+	
 }

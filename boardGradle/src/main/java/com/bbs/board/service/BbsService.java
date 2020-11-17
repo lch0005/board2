@@ -19,7 +19,15 @@ public class BbsService {
 	}
 	
 	public int addDoc(BbsDto dto) {
-		return bbsDao.addDoc(dto); // DAO�� ȣ���մϴ�.
+		return bbsDao.addDoc(dto); // DAO�� ȣ���մϴ�.
+	}
+	public List<BbsDto> getSearchList(BbsDto dto) {
+		return bbsDao.getSearchList(dto);
+	}
+	
+	public BbsDto getDetail(BbsDto dto) {  //게시판 상세보기를 위한
+		return bbsDao.getDetail(dto);
 	}
 
+	
 }

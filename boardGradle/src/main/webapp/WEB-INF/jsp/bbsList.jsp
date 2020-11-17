@@ -23,9 +23,9 @@
 <body style="padding: 10px;">
 
 	<div class="input-group" style="margin: 10px;">
-		<input type="text" class="form-control" placeholder="Search">
+		<input type="text" class="form-control" placeholder="Search" id="searchTxt">
 		<div class="input-group-btn">
-			<button class="btn btn-default" type="button">
+			<button class="btn btn-default" type="button" onclick="search();">
 				<i class="glyphicon glyphicon-search"></i>
 			</button>
 		</div>
@@ -41,14 +41,15 @@
 			<tr>
 				<th>SEQ</th>
 				<th>Title</th>
+				
 				<th>User</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="tableBody">
 			<c:forEach var="list" items="${list}">
 				<tr>
 					<td>${list.seq}</td>
-					<td>${list.title}</td>
+					<td><a href = "/detail/${list.seq}">${list.title}</td>       <!-- a태그로 detail경로설정 -->
 					<td>${list.user}</td>
 				</tr>
 			</c:forEach>
@@ -69,17 +70,45 @@
 
 
 
-<a href="#">News <span class="badge">5</span></a><br>
-<a href="#">Comments <span class="badge">10</span></a><br>
-<a href="#">Updates <span class="badge">2</span></a>
-
-
+<span class="glyphicon glyphicon-name"></span>
 
 </body>
 <script>
 	var moveWrite = function(){
 		location.href= "/add";
 		}
+
+	var search = function() {
+		var req = {"title" : $("#searchTxt").val()};
+		$.ajax({
+			url : "/rest/searchList",
+			dataType : "json",
+			type : "post",
+			data : JSON.stringify(req),
+			contentType : "application/json",
+			success : function(data){
+				//console.log(data);
+				$("#tableBody").html("");
+
+				if(!data) return;
+				var html ="";
+				for(var i =0; i<data.length; i++){
+					html += "<tr>";
+					html += "<td>" +data[i].seq +"</td>";
+					html += "<td><a href='/detail/" +data[i].seq+"'>" +data[i].title +"</a></td>";
+					html += "<td>" +data[i].user +"</td>";
+					html += "</tr>";
+					}
+					$("#tableBody").html(html);
+
+				},
+			error : function(req, status, err){
+				alert(req.status+ " // " + err);
+				}
+			});
+		}
+
+	
 	/* 제이쿼리는 알아두세요 (제이쿼리방식)
 	$(document).ready(function(){
 		$("#btnWrite").click(funtion(){
@@ -87,5 +116,7 @@
 			});
 			});
 	*/
+
+
 </script>
 </html>

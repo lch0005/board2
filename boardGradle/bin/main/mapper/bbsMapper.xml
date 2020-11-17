@@ -32,6 +32,21 @@
 		 WHERE
 		  title LIKE CONCAT('%', #{title, jdbcType=VARCHAR}, '%')
 	</select>
+<!-- 상세보기를 위한 -->
+	<select id="getDetail"  resultType="com.bbs.board.dto.BbsDto" parameterType="com.bbs.board.dto.BbsDto">
+		select
+			seq,
+			title,
+			user,
+			detl
+		from
+			tb_bbs
+		where
+			seq= #{seq}
+	
+	</select>
+<!-- 상세보기를 위한 -->
+	
 
 
 </mapper>

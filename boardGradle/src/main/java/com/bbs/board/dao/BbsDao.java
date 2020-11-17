@@ -5,5 +5,9 @@ import com.bbs.board.dto.BbsDto;
 
 public interface BbsDao {
 	public List<BbsDto> getList();
-	public int addDoc(BbsDto dto);  //¸ÊÆÛ¿¡ id°¡ addDocÀÎ Äõ¸®¸¦ dto¸¦ Àü´ŞÇÏ¿© ½ÇÇà ÇÕ´Ï´Ù.
+	public int addDoc(BbsDto dto);  //ï¿½ï¿½ï¿½Û¿ï¿½ idï¿½ï¿½ addDocï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ dtoï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Õ´Ï´ï¿½.
+	
+	public List<BbsDto> getSearchList(BbsDto dto);
+	
+	public BbsDto getDetail(BbsDto dto);      //ë³¸ë¬¸ì€ í•œê°œë‹ˆê¹Œ <list>í˜•ì‹ìœ¼ë¡œ í•  í•„ìš” ì—†ìŒ
 }
